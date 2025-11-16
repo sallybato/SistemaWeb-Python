@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Login de Usuário{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+        <div class="card shadow-lg border-0 rounded-4 mt-5">
+            <div class="card-header bg-primary text-white text-center rounded-top-4">
+                <h3 class="my-2">Acesso ao TaskFlow</h3>
+            </div>
+            <div class="card-body p-4">
+                <form method="POST">
+                    <!-- Campo E-mail -->
+                    <div class="mb-3">
+                        <label for="email" class="form-label">E-mail</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    
+                    <!-- Campo Senha -->
+                    <div class="mb-4">
+                        <label for="senha" class="form-label">Senha</label>
+                        <input type="password" class="form-control" id="senha" name="senha" required>
+                    </div>
+                    
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary btn-lg shadow">Entrar</button>
+                    </div>
+                </form>
+                
+                <hr class="my-4">
+                <div class="text-center">
+                    Não tem conta? <a href="{{ url_for('cadastro') }}" class="text-success">Cadastre-se agora.</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

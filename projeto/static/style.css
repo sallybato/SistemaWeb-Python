@@ -1,0 +1,26 @@
+/*
+ * Arquivo de Estilo Básico
+ * Complementa o Bootstrap 5
+ */
+
+/* Estilo para centralizar o card em telas menores, se necessário */
+.container-content {
+    min-height: 80vh;
+}
+
+/* Melhorando a aparência de botões de navegação no header */
+.navbar .btn-sm {
+    padding: .3rem .75rem;
+    font-size: .875rem;
+    border-radius: .3rem;
+}
+
+/* Adicionando uma transição suave para interações */
+.btn, .card, .nav-link {
+    transition: all 0.3s ease;
+}
+
+/* Pequeno ajuste visual para a lista de tarefas */
+.list-group-item:hover {
+    background-color: #e9ecef;
+}

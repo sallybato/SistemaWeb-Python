@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard | TaskFlow{% endblock %}
+
+{% block content %}
+<h1 class="mb-4 text-primary">Minhas Tarefas (Dashboard)</h1>
+
+<div class="row">
+    <!-- Coluna de Adicionar Nova Tarefa -->
+    <div class="col-lg-4 mb-4">
+        <div class="card shadow-sm border-0 rounded-3">
+            <div class="card-header bg-success text-white">
+                <h5 class="mb-0">Adicionar Nova Tarefa</h5>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('dashboard') }}">
+                    <div class="mb-3">
+                        <label for="titulo" class="form-label">Título da Tarefa <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="titulo" name="titulo" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="descricao" class="form-label">Descrição (Opcional)</label>
+                        <textarea class="form-control" id="descricao" name="descricao" rows="3"></textarea>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-success">Salvar Tarefa</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Coluna de Lista de Tarefas -->
+    <div class="col-lg-8">
+        <div class="card shadow-sm border-0 rounded-3">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Lista de Tarefas Cadastradas</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                {% if tarefas %}
+                    {% for tarefa in tarefas %}
+                        <li class="list-group-item d-flex justify-content-between align-items-start p-3">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold text-dark">{{ tarefa.titulo }}</div>
+                                <span class="text-muted small">{{ tarefa.descricao if tarefa.descricao else "Sem descrição." }}</span>
+                            </div>
+                            <!-- Botão de Excluir -->
+                            <form method="POST" action="{{ url_for('excluir_tarefa', tarefa_id=tarefa.id) }}" class="ms-3" onsubmit="return confirm('Tem certeza que deseja excluir esta tarefa?')">
+                                <button type="submit" class="btn btn-outline-danger btn-sm" title="Excluir">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2.5a1 1 0 0 1 1-1h11a1 1 0 0 1 1 1V3zM4.118 4l.84-4.204A1 1 0 0 1 5.882 0h4.236a1 1 0 0 1 .924.796L11.882 4H4.118zM2.5 3V2.5h11V3h-11z"/>
+                                    </svg>
+                                </button>
+                            </form>
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <li class="list-group-item text-center p-4 text-muted">
+                        Você ainda não tem tarefas cadastradas. Use o formulário ao lado para começar!
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
