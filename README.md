@@ -159,4 +159,20 @@ source venv/bin/activate
             <p>Armazena os itens de tarefa, ligados ao usuário.</p>
             <table class="table table-bordered table-striped">
                 <thead class="table-info">
-                    <tr><th>Coluna</th><th>Tipo</th><th>Restrições</th><th>Descrição</th>
+                    <tr><th>Coluna</th><th>Tipo</th><th>Restrições</th><th>Descrição</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>`id`</td><td>INTEGER</td><td>PRIMARY KEY, AUTOINCREMENT</td><td>Identificador único da tarefa.</td></tr>
+                    <tr><td>`usuario_id`</td><td>INTEGER</td><td>FOREIGN KEY</td><td>Chave que aponta para o ID do usuário que criou a tarefa.</td></tr>
+                    <tr><td>`titulo`</td><td>TEXT</td><td>NOT NULL</td><td>Título breve da tarefa.</td></tr>
+                    <tr><td>`descricao`</td><td>TEXT</td><td></td><td>Detalhes opcionais da tarefa.</td></tr>
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+
+    <!-- Link para Bootstrap JS (bundle com Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
